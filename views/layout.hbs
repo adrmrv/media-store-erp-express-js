@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+
+  <meta name="theme-color" content="#712cf9">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">MusicERP</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link active">Acceuil</a>
+                <a href="/invoices" class="nav-item nav-link">Invoices</a>
+                <a href="/customers" class="nav-item nav-link">Customers</a>
+                <a href="/employees" class="nav-item nav-link">Employees</a>
+                <a href="/albums" class="nav-item nav-link">Albums</a>
+                <a href="/tracks" class="nav-item nav-link">Tracks</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Settings</a>
+                    <div class="dropdown-menu">
+                        <a href="/artists" class="dropdown-item">Artists</a>
+                        <a href="/genres" class="dropdown-item">Genres</a>
+                        <a href="/medias" class="dropdown-item">Media types</a>
+                        <a href="/playlists" class="dropdown-item">Playlist</a>
+                    </div>
+                </div>
+            </div>
+            <form class="d-flex">
+                <div class="input-group">                    
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+                </div>
+            </form>
+            <div class="navbar-nav">
+                <!-- <a href="#" class="nav-item nav-link">Login</a> -->
+            </div>
+        </div>
+    </div>
+</nav>
+
+{{{body}}}
+
+</body>
+
+</html>

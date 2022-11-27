@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Tracks</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+
+            <form action="/tracks" method="get">
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Title</label>
+                        <input type="text" class="form-control" id="inputName" name="t" placeholder="Title"
+                            value="{{t}}">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Album</label>
+                        <input type="text" class="form-control" id="inputName" name="a" placeholder="Album"
+                            value="{{a}}">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Composer</label>
+                        <input type="text" class="form-control" id="inputName" name="c" placeholder="Composer"
+                            value="{{c}}">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Media</label>
+                        <select class="form-select" name="m">
+                            {{#each medias}}
+                            <option value="{{MediaTypeId}}" {{#if selected}}selected="selected"{{/if}}>{{Name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Genre</label>
+                        <select class="form-select" name="g">
+                            {{#each genres}}
+                            <option value="{{GenreId}}">{{Name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">N°
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=id"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=iu"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Title
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=td"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=tu"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Album
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=ad"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=au"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Composer
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=cd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/tracks?o={{o}}&n={{n}}&t={{t}}&a={{a}}&c={{c}}&or=cu"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Media type
+                        </th>
+                        <th>
+                            Genre
+                        </th>
+                        <th class="text-end text-truncate">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/artist/add" class="btn btn-success">
+                                    <i class="bi-plus-circle"></i> Add
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{TrackId}}</td>
+                        <td class="text-truncate" title="{{Name}}">{{Name}}</td>
+                        <td class="text-truncate" title="{{Album}}">{{Album}}</td>
+                        <td class="text-truncate" title="{{Composer}}">{{Composer}}</td>
+                        <td class="text-truncate" title="{{Media}}">{{Media}}</td>
+                        <td class="text-truncate" title="{{Genre}}">{{Genre}}</td>
+                        <td class="text-end text-truncate">
+
+                            <div class="btn-group btn-group-sm">
+                                <a href="/track/{{TrackId}}" class="btn btn-warning">
+                                    <i class="bi-pencil"></i> Edit
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+            <style>
+                table td {
+                    max-width: 300px;
+                }
+            </style>
+
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                    <li class="page-item {{active}} {{disabled}}">
+                        <a href="/tracks?o={{offset}}&n={{../n}}&or={{../or}}" class="page-link">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

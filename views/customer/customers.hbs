@@ -1,0 +1,137 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Customer</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+
+            <form action="/customers" method="get">
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="inputName" name="n" placeholder="Name"
+                            value="{{n}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="inputCompany" name="c" placeholder="Company"
+                            value="{{c}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="inputName" name="a" placeholder="Address"
+                            value="{{a}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" id="inputEmail" name="e" placeholder="Email"
+                            value="{{e}}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">N°
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=id"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ia"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Name
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=nd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=na"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Company
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=cd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ca"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Address
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ad"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=aa"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Email
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ed"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ea"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Representative&nbsp;<a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=rd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/customers?e={{e}}&n={{n}}&a={{a}}&c={{c}}&or=ra"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th class="text-end text-truncate">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/artist/add" class="btn btn-success">
+                                    <i class="bi-plus-circle"></i> Add
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{CustomerId}}</td>
+                        <td class="text-truncate" title="{{Name}}">{{Name}}</td>
+                        <td class="text-truncate" title="{{Company}}">{{Company}}</td>
+                        <td class="text-truncate" title="{{Address}}">{{Address}}</td>
+                        <td class="text-truncate" title="{{Email}}">{{Email}}</td>
+                        <td class="text-truncate" title="{{Representative}}">{{Representative}}</td>
+                        <td class="text-end text-truncate">
+
+                            <div class="btn-group btn-group-sm">
+                                <a href="/customer/{{CustomerId}}" class="btn btn-warning">
+                                    <i class="bi-pencil"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+            <style>
+                table td {
+                    max-width: 300px;
+                }
+            </style>
+
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                    <li class="page-item {{active}} {{disabled}}">
+                        <a href="/customers?e={{../e}}&n={{../n}}&a={{../a}}&c={{../c}}&o={{offset}}&or={{../or}}" class="page-link">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

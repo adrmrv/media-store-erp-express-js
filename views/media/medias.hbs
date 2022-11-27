@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <h2>Types de media</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{MediaTypeId}}</td>
+                        <td>{{Name}}</td>
+                        <td class="text-end">
+                            <a href="/media/{{MediaTypeId}}" class="btn btn-primary">
+                                <i class="bi-pencil"></i> Edit
+                            </a>
+                        </td>
+                        <td class="text-end">
+                            <form action="/media/delete/{{MediaTypeId}}" method="post">
+                                <button class="btn btn-danger">
+                                    <i class="bi-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <a href="/media/add" class="btn btn-success"><i class="bi-plus-circle"></i> Add</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Albums</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+
+            <form action="/albums" method="get">
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Artist</label>
+                        <input type="text" class="form-control" id="inputName" name="n" placeholder="Artist"
+                            value="{{n}}">
+                    </div>
+                    <div class="col-auto">
+                        <label for="inputName" class="visually-hidden">Album</label>
+                        <input type="text" class="form-control" id="inputName" name="t" placeholder="Album"
+                            value="{{t}}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">N°
+                            <a href="/albums?o={{o}}&n={{n}}&t={{t}}&or=ad"><i class="bi bi-arrow-down"></i></a>
+                            <a href="/albums?o={{o}}&n={{n}}&t={{t}}or=au"><i class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Album
+                            <a href="/albums?o={{o}}&n={{n}}&or=nd"><i class="bi bi-arrow-down"></i></a>
+                            <a href="/albums?o={{o}}&n={{n}}&or=nu"><i class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Artist
+                            <a href="/albums?o={{o}}&n={{n}}&or=rd"><i class="bi bi-arrow-down"></i></a>
+                            <a href="/albums?o={{o}}&n={{n}}&or=ru"><i class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Tracks
+                        </th>
+                        <th class="text-end text-truncate">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/artist/add" class="btn btn-success">
+                                    <i class="bi-plus-circle"></i> Add
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{AlbumId}}</td>
+                        <td class="text-truncate" title="{{Title}}">{{Title}}</td>
+                        <td class="text-truncate" title="{{Name}}">{{Name}}</td>
+                        <td>{{Tracks}}</td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/album/{{AlbumId}}" class="btn btn-warning">
+                                    <i class="bi-pencil"></i> Edit
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+            <style>
+                table td {
+                    max-width: 300px;
+                }
+            </style>
+
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                    <li class="page-item {{active}} {{disabled}}">
+                        <a href="/albums?o={{offset}}&n={{../n}}&or={{../or}}" class="page-link">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

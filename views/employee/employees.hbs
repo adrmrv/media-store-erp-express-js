@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Employees</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+
+            <form action="/employees" method="get">
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="n" placeholder="Name"
+                            value="{{n}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="t" placeholder="Title"
+                            value="{{t}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="p" placeholder="Phone"
+                            value="{{p}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="e" placeholder="Email"
+                            value="{{e}}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">N°
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=id"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=ia"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Name
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=nd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=na"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Title
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=td"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=ta"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            BirthDate
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=bd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=ba"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Email
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=ed"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=ea"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Phone
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=pd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/employees?n={{n}}&p={{p}}&t={{t}}&e={{e}}&or=pa"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th class="text-end text-truncate">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/employee/add" class="btn btn-success">
+                                    <i class="bi-plus-circle"></i> Add
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{EmployeeId}}</td>
+                        <td class="text-truncate" title="{{Name}}">{{Name}}</td>
+                        <td class="text-truncate" title="{{Title}}">{{Title}}</td>
+                        <td class="text-truncate" title="{{BirthDate}}">{{BirthDate}}</td>
+                        <td class="text-truncate" title="{{Email}}">{{Email}}</td>
+                        <td class="text-truncate" title="{{Phone}}">{{Phone}}</td>
+                        <td class="text-end text-truncate">
+
+                            <div class="btn-group btn-group-sm">
+                                <a href="/employee/{{EmployeeId}}" class="btn btn-warning">
+                                    <i class="bi-pencil"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+            <style>
+                table td {
+                    max-width: 300px;
+                }
+            </style>
+
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                    <li class="page-item {{active}} {{disabled}}">
+                        <a href="/employees?e={{../e}}&n={{../n}}&a={{../a}}&c={{../c}}&o={{offset}}&or={{../or}}" class="page-link">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

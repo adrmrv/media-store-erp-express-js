@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Invoices</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+
+            <form action="/invoices" method="get">
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="n" placeholder="Name"
+                            value="{{n}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="a" placeholder="Address"
+                            value="{{a}}">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control" name="c" placeholder="City"
+                            value="{{c}}">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap;">N°
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=id"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=ia"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Name
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=nd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=na"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Date
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=dd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=da"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Address
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=ad"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=aa"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            City
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=cd"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=ca"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th>
+                            Total
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=td"><i
+                                    class="bi bi-arrow-down"></i></a>
+                            <a href="/invoices?n={{n}}&a={{a}}&c={{c}}&or=ta"><i
+                                    class="bi bi-arrow-up"></i></a>
+                        </th>
+                        <th class="text-end text-truncate">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/employee/add" class="btn btn-success">
+                                    <i class="bi-plus-circle"></i> Add
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{InvoiceId}}</td>
+                        <td class="text-truncate" title="{{Name}}">{{Name}}</td>
+                        <td class="text-truncate" title="{{InvoiceDate}}">{{InvoiceDate}}</td>
+                        <td class="text-truncate" title="{{BillingAddress}}">{{BillingAddress}}</td>
+                        <td class="text-truncate" title="{{BillingCity}}">{{BillingCity}}</td>
+                        <td class="text-truncate" title="{{Total}}">{{Total}}</td>
+                        <td class="text-end text-truncate">
+
+                            <div class="btn-group btn-group-sm">
+                                <a href="/employee/{{EmployeeId}}" class="btn btn-warning">
+                                    <i class="bi-pencil"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+            <style>
+                table td {
+                    max-width: 300px;
+                }
+            </style>
+
+            <nav>
+                <ul class="pagination">
+                    {{#each pages}}
+                    <li class="page-item {{active}} {{disabled}}">
+                        <a href="/invoices?n={{../n}}&a={{../a}}&c={{../c}}&o={{offset}}&or={{../or}}" class="page-link">
+                            {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

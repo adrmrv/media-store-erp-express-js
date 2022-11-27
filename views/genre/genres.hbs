@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Genres</h2>
+            {{#if message}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success!</strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            {{#if error_message}}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Failure!</strong> {{error_message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {{/if}}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th class="text-end">
+                            <div class="btn-group btn-group-sm">
+                            <a href="/genre/add" class="btn btn-success"><i class="bi-plus-circle"></i> Add</a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{GenreId}}</td>
+                        <td>{{Name}}</td>
+
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/genre/{{GenreId}}" class="btn btn-primary">
+                                    <i class="bi-pencil"></i> Edit
+                                </a>
+
+                                <form action="/genre/delete/{{GenreId}}" method="post">
+                                    <button class="btn btn-danger">
+                                        <i class="bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

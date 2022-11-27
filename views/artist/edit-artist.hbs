@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Artist</h2>
+
+            <form action="/artist/edit/{{ArtistId}}" method="post">
+                <div class="row mb-3">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" name="$Name"
+                            value="{{Name}}" />
+                        <input type="hidden" class="form-control" id="inputId" placeholder="Name" name="$ArtistId"
+                            value="{{ArtistId}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
